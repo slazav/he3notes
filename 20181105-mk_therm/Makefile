@@ -28,6 +28,7 @@ TEXTS_T = ${TEXTS:=.pdf}
 
 %.pdf: %.tex ${PICS_T}
 	pdflatex $<
+	pdflatex $<
 
 all: ${PICS_T} ${TEXTS_T}
 
