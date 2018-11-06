@@ -46,7 +46,7 @@ ${FIG_PREF}%.pdf: ${FIG_PREF}%.eps
 ##################################
 TEXTS_T = ${TEXTS:=.pdf}
 
-%.pdf: %.tex ${PICS_T}
+%.pdf: %.tex ${PICS_T} ../brands.tex
 	pdflatex $<
 	pdflatex $<
 
