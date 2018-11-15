@@ -40,10 +40,16 @@
 
 % simple image
 \newcommand\simpleimage[3][\linewidth]{
-\vbox{\noindent
+\smallskip\begin{center}\vbox{\noindent
 \includegraphics[width=#1]{#2}\\%
-\it#3}
+\parbox{#1}{\it#3}}\end{center}
 \medskip}
+
+%\newcommand\simpleimage[3][\linewidth]{
+%\smallskip\vbox{\noindent
+%\includegraphics[width=#1]{#2}\\%
+%\it#3}
+%\medskip}
 
 
 % companies

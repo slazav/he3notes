@@ -1,0 +1,85 @@
+\documentclass[a4paper]{article}
+\input{../texinc.tex}
+
+\title{NMR cell N1 (2016)}
+\author{V.Zavjalov}
+
+\twocolumn
+\begin{document}
+\maketitle
+
+A simple cell for testing NMR in superfluid $^3$He. A Stycast-1266 cylindrical cell,
+diameter 7.8~mm, height 10~mm, filling line 1~mm.
+
+All drawings: \WWWFile{notes/2016-nmrcell1/draw.zip}\\
+NMR magnet text: \WWWFile{notes/2016-nmrmag.pdf}
+
+\simpleimage{img/cell_plan.png}{RF coil former (left) and the cell (right)}
+
+\simpleimage{img/cell_parts.jpg}{Cell parts}
+
+Copper cell leg was annealed at $900^\circ$C for 2h, brass spacer was
+hard-soldered. Cleaning have been done in boiling water (to remove flux),
+and then in boiling water with vinegar and baking soda to remove oxide. Note,
+that brass became a copper-colored after soldering because Zn goes away.
+
+Small quartz fork (32kHz) have been put into the cell leg about 1 cm from
+its bottom. Cell leg have been glued into the cell with Stycast-1266.
+Wires from the fork go through the glue.
+
+Fork measurement at room temperature:\\
+$P=1$~bar: $1/\tau=17.22$~1/s, $f=32743.76$~Hz\\
+$P=0$~bar: $1/\tau=1.364$~1/s, $f=32750.69$~Hz
+
+\simpleimage{img/cell_glue.jpg}{Cell leg (hard-soldered); fork (can is opened); gluing the cell}
+
+Two pairs of RF coils are mounted on a separate plastic holder. Each pair has 34+34 turns
+of 70mkm(?) Cu wire. Copper wires are in thermal contact with the mixing chamber.
+Measured inductance, capacitance and resistance (with ~30cm wires):\\
+coil 1: $L = 55.6\,\mu$H, $C = 14.2$~pF, $R = 14.4\,\Omega$\\
+coil 2: $L = 55.4\,\mu$H,  $C = 15.7$~pF,  $R = 14.6\,\Omega$\\
+Mutual capacitance about 10~pF.
+
+Calculated magnetic field in the center: 16.6~G/A.
+Calculation script (uses \MagnettiProg{} program) and field profile (text table):
+\WWWFile{notes/2016-nmrcell1/rfcoil\_calc.zip}
+
+
+\simpleimage{img/rfcoil_parts.jpg}{Parts of RF coil former}
+
+\simpleimage{img/rfcoil.jpg}{RF coil (final version is on the right)}
+
+\simpleimage{img/cell_finished.jpg}{Cell is mounted on the flange; centering RF coils}
+
+\simpleimage{img/cell_magn.jpg}{The cell and the magnet}
+
+RF coil forms a resonant circuit with a capacitor. A relay box (todo: text)
+is used to switch the capacitance from 400 to 2400~pF.
+
+Resonance curves measured at room temperature with a generator and a
+lock-in, matlab script for fitting (not good):
+\WWWFile{notes/2016-nmrmag/res300K.zip}. At frequency 800~kHz mutual inductance
+and parasitic capacitance between coils compensates each other and
+coupling goes to zero. This is an ideal situation for such
+NMR coil design.
+
+\simpleimage{img/resonance.png}{Resonances at room temperature}
+
+Noise measured at room temperature:\\
+\WWWFile{notes/2016-nmrmag/noise300K.zip}
+
+\simpleimage{img/noise300K.png}{Coil noise at room temperature}
+
+{\bf Drilling the cell (2018-01-18).} During glueing the cell filling line
+was blocked. The filling line was drilled through the top wall of the cell,
+then the hole was glued with a small GRP part.
+
+\simpleimage[3cm]{img/drilling.jpg}{Drilling the cell}
+
+{\bf RF-field calibration in the HPD experiment.} For $U_{\mbox{exc}}=1$~V
+voltage on the coil is 0.05~V (HiZ mode of the generator + 20~dB
+attenuator). Assuming the inductance~$L=55\,\mu$H and the
+frequency~$f=1.120$~MHz one have the current~$I=0.13$~mA and field
+$2.14$~mG/V in the center. Dimensionless field is $6.2\times10^{-6}$.
+
+\end{document}
