@@ -19,14 +19,8 @@ is a D6 hole for the cell leg, D3 and D4 screw holes near corners (where
 marnetic field is small) and possible gap between Nb tube and top/bottom
 plates.
 
-\begin{center}
-\includegraphics[width=6cm]{img/solenoid_plan.png}
-\end{center}
-
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/solenoid.jpg}\\
-\it Solenoid and testing frame
-}
+\simpleimage[6cm]{img/solenoid_plan.png}{}
+\simpleimage{img/solenoid.jpg}{Solenoid and testing frame}
 
 The coil former and flanges have been made of oxigen-free copper in LTL
 workshop and then annealed for 2 hours at 900$^\circ$C in
@@ -37,27 +31,22 @@ $60\times1\times140$~mm tube, 153\euro{} for $65\times140\times1$~mm
 plate).
 
 All drawings: coil former, flanges, niobium shield, contact plate, testing flange:\\
-\WWWFile{suppl/20161103-nmrmag/draw.zip}
+\WWWFile{notes/20161103-nmrmag/draw.zip}
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/parts.jpg}\\
-{\it parts}}
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/parts_ann.jpg}\\
-{\it copper parts after annealing}}
+\simpleimage{img/parts.jpg}{Magnet parts}
+
+\simpleimage{img/parts_ann.jpg}{Copper parts after annealing}
 
 \subsection*{Magnet calculation}
 Coil calculations and optimisation have been done with \MagnettiProg{} program.\\
 Optimization details:\\
-\WWWFile{texts/2016-nmrmagcalc.pdf}\\
+\WWWFile{notes/2016-nmrmag\_calc.pdf}\\
 Script for optimization:\\
-\WWWFile{suppl/2016-nmrmag/calc\_scr.zip}\\
+\WWWFile{notes/2016-nmrmag/calc\_scr.zip}\\
 Calculated field profiles (text table):\\
-\WWWFile{suppl/2016-nmrmag/calc\_res.zip}
+\WWWFile{notes/2016-nmrmag/calc\_res.zip}
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/field_prof.png}\\
-{\it calculated field profiles}}
+\simpleimage{img/field_prof.png}{Calculated field profiles}
 
 \subsection*{Magnet winding}
 
@@ -71,9 +60,7 @@ $70\mu$m without isolation, $83-85\mu$m with isolation; Cu/NbTi ratio:
 temperature $8.0\Omega/$m; bought from \Bruker. Stycast-1266 was used to
 fill the coil.
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/winding.jpg}\\
-{\it winding process}}
+\simpleimage{img/winding.jpg}{Winding process}
 
 {\bf Main coil:} length 104~mm, inner diameter 42~mm. Winding:
 5 layers: 1208+1197+1200+1203+1193 turns. Accurate everywhere except
@@ -98,31 +85,20 @@ for the next coil.
 {\bf Forth-power coil.} 1 layer, 79+79 turns, 6.8mm + 14mm gap + 6.0mm
 (very assymetric for some reason).
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/main_coil.jpg}\\
-{\it main coil}}
+\simpleimage{img/main_coil.jpg}{Main coil}
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/grad_coil.jpg}\\
-{\it gradient coil}}
+\simpleimage{img/grad_coil.jpg}{Gradient coil}
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/coil.png}\\
-{\it coil layout}}
+\simpleimage{img/coil.png}{Coil layout}
 
 {\bf Connector:} plastic body + brass screws and nuts +
 two-sided 0.4mm PCB (one side for contacts, another one for heat sink).
 Wires are soldered to the connector at length 20-30cm (isolation was
 removed in boiling NaOH).
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/conn.jpg}\\
-{\it connector}}
-\medskip
+\simpleimage{img/conn.jpg}{Connector}
 
-\vbox{\noindent
-\includegraphics[width=\linewidth]{img/final.jpg}\\
-{\it flanges}}
+\simpleimage{img/final.jpg}{Flanges}
 
 \subsection*{Solenoid parameters}
 
@@ -171,5 +147,17 @@ Helm: & 174~$\Omega$\\
 
 On the connector all coils are shortened by 100~$\Omega$ resistors to
 provide LR filtering.
+
+\subsection*{Problems and ideas}
+
+1. Cut lower flange of the coil former to avoid contact with niobium shield and
+decrease heat conductivity. I am not sure that this can be done accurately.
+Also I'm not sure that this heat leak source is important.
+
+2. Problem with the gradient coil: measurement gives approximately 1/2 of the
+calculated value (15~G/cm/A). A stupid mistake somewhere...
+
+3. One lead of the main coil is connected to the ground. Probably, can
+not be fixed.
 
 \end{document}

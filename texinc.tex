@@ -27,7 +27,7 @@
 \pagestyle{empty}
 
 
-% PDF figure
+% PDF figure (floating)
 \newcommand{\image}[3]{
 \begin{figure}[#1]
 \begin{center}
@@ -37,6 +37,13 @@
 \end{center}
 \end{figure}
 }
+
+% simple image
+\newcommand\simpleimage[3][\linewidth]{
+\vbox{\noindent
+\includegraphics[width=#1]{#2}\\%
+\it#3}
+\medskip}
 
 
 % companies

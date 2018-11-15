@@ -47,4 +47,4 @@ done
 echo "</ul></body></html>" >> "$idx"
 
 
-rsync -av --delete SITE/ taltta:public_html/texts/
+rsync -av --delete SITE/ taltta:public_html/notes/

@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name coldamp_v21)(type Legacy)(uri ${KIPRJMOD}/lib_sh/coldamp_v21.lib)(options "")(descr ""))
-)

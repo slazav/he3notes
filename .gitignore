@@ -1,1 +1,10 @@
 SITE
+
+*.aux
+*.dvi
+*.pdf
+*.bak
+*.log
+*.bbl
+*.blg
+*.out
