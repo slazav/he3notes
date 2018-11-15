@@ -1,6 +1,8 @@
 # define this do build pictures (fig+tex) and texts (pdflatex)
 PICS  ?=
 TEXTS ?=
+# folder with inc-files
+INCDIR ?= ../
 
 # redefine if needed
 IMGDIR   ?= img
@@ -46,7 +48,7 @@ ${FIG_PREF}%.pdf: ${FIG_PREF}%.eps
 ##################################
 TEXTS_T = ${TEXTS:=.pdf}
 
-%.pdf: %.tex ${PICS_T} ../brands.tex
+%.pdf: %.tex ${PICS_T} ${INCDIR}/texinc.tex
 	pdflatex $<
 	pdflatex $<
 
@@ -54,5 +56,5 @@ all: ${PICS_T} ${TEXTS_T}
 
 ##################################
 clean:
-	rm -f *.aux *.log *.nav *.out *.snm *.toc *.dvi *.eps *.bak *.bbl *.blg
-	rm -f ${PICS_T} tmp_fig.* img/*.eps img/*.tex
+	rm -f *.aux *.log *.nav *.out *.snm *.toc *.dvi *.eps *.bak *.bbl *.blg *.pdf
+	rm -f ${PICS_T} ${IMGDIR}/*.eps ${IMGDIR}/*.tex

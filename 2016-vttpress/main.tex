@@ -1,0 +1,108 @@
+\documentclass[a4paper]{article}
+
+\input{../texinc.tex}
+
+\title{Calibration of VTT pressure sensor}
+\author{V.Zavjalov}
+
+\twocolumn
+\begin{document}
+\maketitle
+
+{\bf Experimantal setup.} For measurements we used Andeen-Hagerling AH
+2500A capacitance bridge working at 1~kHz. The voltage~$U$ applied by the
+bridge to the pressure sensor can be chosen in the range from 0.5~mV to
+15~V RMS. At~$U>1$~V the noise of the measurement was about
+$1\cdot10^{-3}$~pF, this corresponds to the pressure variations of about
+$0.3$~mbar. Pressure was measured by Wallace \& Tiernan absolute pressure
+gauge with working range $0\ldots1$~bar and resolution $\sim 0.3$~mbar.
+%(For low pressure measurements we also use Agilent FRG-730 Pirani gauge.)
+Temperature was measured by PT1000 platinum thermometer.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\image{h}{pcal}{Fig.~1. (A) Capacitance of the pressure sensor as a
+function of pressure. Measurements for three exctation voltages (red 15
+V, green 7.5 V, blue 1.5 V) and two temperatures (circles 295~K, squares
+77.2~K) are shown. Lines are fits to the model~(\ref{eq:mod}), made
+separately for each temperature. Data for other voltage values (3~V,
+0.75~V, 0.35~V, 0.25~V, 0.1~V) was used for fitting, but not shown on the
+picture.
+(B) Difference between measured data and
+model~(\ref{eq:mod}). Same data as on (A) are presented. }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Pressure dependence.} We found that at constant temperature the
+capacitance~$C$ of the pressure sensor as a function of pressure~$P$ and
+applied voltage~$U$ can be fit by a model with four parameters, $C_0$,
+$C_1$, $P_0$, $U_0$:
+\begin{equation}\label{eq:mod}
+C = C_0 + C_1\ \frac{1}{d},
+\end{equation}
+where $d$ is determined by a non-linear equation:
+\begin{equation}
+d = 1 - \frac{P}{P_0} - \left(\frac{1}{d}\ \frac{U}{U_0}\right)^2.
+\end{equation}
+In this model the sensor is treated as a sum of a constant capacitor
+$C_0$ and a flat capacitor $C_1$ with dimensionless distance~$d$ affected
+linearly by applied force. One component of the force is proportional to
+the pressure and another one is electrostatic force proportional to $U^2/d^2$. In
+this model the capacitor is collapsed at $P=P_0$ or
+$U=2/(3\sqrt{3})\,U_0\approx 0.385\,U_0$. We checked that above~$\approx 1.6$~bar
+loss in the capacitor grows quickly and it becomes imposiible to measure
+the capacitance.
+
+Fig. 1 shows measured capacitance as a function of~$P$ and~$U$ at room
+temperature (295 K) and temperature of liquid nitrogen (77.2~K). One can
+see that model works well everywhere except the region of high pressures
+and high excitation voltages (this corresponds to the smallest values of
+distance~$d$). At small exitation voltages ($<3V$) the model gives us the
+accuracy $\sim 10^{-3}$~pF comparable to the noise in the capacitance measurement.
+
+Measured parameters for room temperature (295K), temperature of liquid
+nitrogen (77.2 K) and temperature of liquid helium (4.2K) are in the
+table:
+
+\begin{tabular}{lll}
+$T$, K & $C_0$, pF          & $C_1$, pF \\\hline
+295.04 & $24.0821\pm0.0084$ & $9.0052\pm0.0082$\\
+77.2   & $23.4230\pm0.0065$ & $8.8738\pm0.0064$\\
+4.2    & $23.3702\pm0.0098$ & $8.8544\pm0.0096$\\
+\hline
+\end{tabular}
+
+\begin{tabular}{llll}
+$T$, K & $P_0$, bar & $U_0$, V RMS\\\hline
+295.0 & $2.9864\pm0.0019$ & $178.854\pm0.691$\\
+77.2  & $3.0082\pm0.0015$ & $179.846\pm0.530$\\
+4.2   & $3.0043\pm0.0023$ & $171.643\pm0.713$\\
+\hline
+\end{tabular}
+\medskip
+
+%{\bf Temperature dependence.}
+%Measurements similar to Fig.~1 are done at several temperatures giving us
+%parameters $C_0$, $C_1$, $\alpha$ and~$\beta$. We also performed
+%measurements of the capacitance during slow heating at 0 and 1 bar with
+%various voltages~$U$.
+%
+%TODO
+
+
+{\bf Helium diffusion.} In helium atmosphere pressure readings of the
+sensor start to shift because of diffusion of helium inside the sensor
+inner volume. In air or vacuum the diffusion goes in the opposite
+direction, restoring the original readings. This effect exist only at
+high temperatures. At room temperature we observed filling of the inner
+volume with time constant $\sim2.5$~h. At temperature of liquid nitrogen
+(77.2~K) we have not observed any visible change during 15~h
+(See Fig~2.).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\image{h}{hdiff}{Fig.~1. Helium diffusion. At room temperature
+(295 K) helium diffuse into sensor's inner volume, filling it with time
+constant $\sim 2.5$~h. At temperature of liquid nitrogen no diffusion have
+been observed.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

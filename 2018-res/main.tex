@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+\input{../texinc.tex}
+
+\title{A resonator driven by external force}
+\author{V.Zavjalov}
+
+\begin{document}
+\maketitle
+
+\begin{tabular}{ll}
+\hline\\[-2mm]
+
+Equation: &
+$\displaystyle
+\ddot x = -\omega^2_0 x + \dot x /\tau + F\exp(i\omega t)$
+\\[5mm]
+
+Fourier component~$\omega$: &
+$\displaystyle
+-\omega^2 x = -\omega^2_0 x + i \omega x /\tau + F$
+\\[5mm]
+
+Complex amplitude: &
+$\displaystyle
+x(\omega) = \frac{F}{\omega_0^2 - \omega^2 - i \omega /\tau}$
+
+\\[5mm]\hline\\[-2mm]
+
+Dispersion: &
+$\displaystyle
+\Re(x) = F\ \frac{\omega_0^2 - \omega^2}
+                {(\omega_0^2 - \omega^2)^2 + (\omega /\tau)^2}$
+\\[5mm]
+Dispersion max/min: &
+$\displaystyle
+\omega_m^2 = \omega_0^2 \left(1 \pm \frac1{\omega_0\tau}\right),
+\qquad \Re(x) = \mp \frac{F\tau} {2\omega_0 \pm 1/\tau}$
+\\[5mm]
+Dispersion zero: &
+$\displaystyle
+\omega_z = \omega_0$
+
+\\[5mm]\hline\\[-2mm]
+
+Absorption: &
+$\displaystyle
+\Im(x) = F\ \frac{\omega /\tau}
+                {(\omega_0^2 - \omega^2)^2 + (\omega /\tau)^2}$
+\\[5mm]
+Absorption maximum: &
+$\displaystyle
+\omega_m^2 = \frac13 (\omega_0^2-1/2\tau^2) + \frac13 \sqrt{(\omega_0^2-1/2\tau^2)^2 + 3\omega_0^4}$
+\\[5mm]
+
+at $(\omega_0\tau)^2 \gg 1$: &
+$\displaystyle
+\omega_m^2 \approx \omega_0^2 \left(1 - \frac1{(2\omega_0\tau)^2}\right),
+\qquad
+\Im(x) \approx \frac{F \tau}{\omega_0}
+\left(1 + \frac1{(4\omega_0\tau)^2}\right)
+$
+\\[5mm]
+
+$1/2$-height points:&
+$\displaystyle
+\omega_h \approx \omega_m \pm 1/2\tau
+$
+
+\\[5mm]
+
+width at $1/\sqrt2$ height:&
+$\displaystyle
+d\omega \approx \frac1{\tau}
+$
+
+
+\\[5mm]\hline\\[-2mm]
+
+
+Absolute value: &
+$\displaystyle
+|x| = \frac{F} {\sqrt{(\omega_0^2 - \omega^2)^2 + (\omega /\tau)^2}}
+$\\[5mm]
+
+Absolute value maximum: &
+$\displaystyle
+\omega_m^2 = \omega_0^2 \left(1 - \frac1{2(\omega_0\tau)^2}\right),
+\qquad
+|x| = \frac{F\tau}{\omega_0} \left(1 - \frac1{(2\tau\omega_0)^2}\right)^{-1/2}
+$
+\\[5mm]
+
+$1/\sqrt2$-height points:&
+$\displaystyle
+\omega_h^2 = \omega_0^2 - 1/2\tau^2 \pm \sqrt{ \omega_0^2/\tau^2 - 1/4\tau^4}
+$
+\\[5mm]
+
+width at $1/\sqrt2$ height:&
+$\displaystyle
+d\omega \approx \frac1{\tau} \left(1 - \frac1{8(\tau\omega_0)^2}\right)
+$
+\\[5mm]\hline\\[-2mm]
+
+\end{tabular}
+
+\section*{Free decay}
+\begin{tabular}{ll}
+\hline\\[-2mm]
+
+Equation: &
+$\displaystyle
+\ddot x = -\omega^2_0 x + \dot x /\tau$
+\\[5mm]
+
+Solution: &
+$\displaystyle
+x = C \exp(wt),
+\qquad
+w = \pm i \sqrt{ \omega^2_0 - 1/4\tau^2} + 1/2\tau
+$
+\\[5mm]
+
+\end{tabular}
+
+\image{h}{res}{}
+
+\end{document}
+
+

@@ -1,0 +1,50 @@
+#!/bin/sh -eu
+
+if [ ! -d SITE ]; then
+  echo "can't find SITE folder"
+  exit 1
+fi
+
+idx="SITE/index.htm"
+
+echo "<html><body><h2>Notes</h2><ul>" > "$idx"
+
+# Find all texts (tex-files), extract titles
+for i in */*.tex; do
+  name=$(basename $i .tex)
+  pref=${i%/*}
+  echo $i
+
+  # Extract author and title field from tex
+  title="$(sed -n -r -e 's/.*\\title\{([^\}]*)\}.*/\1/p' "$i")"
+  authr="$(sed -n -r -e 's/.*\\author\{([^\}]*)\}.*/\1/p' "$i")"
+
+  # Run make
+  make -C "$pref"
+
+  # Copy PDF files:
+  #   pref/main.pdf -> SITE/pref.pdf
+  #   pref/*.pdf -> SITE/pref_*.pdf
+  src="$pref/$name.pdf"
+  [ "$name" = main ] && dst="${pref}.pdf"\
+                     || dst="${pref}_${name}.pdf"
+  [ "SITE/$dst" -nt "$src" ] || cp -f "$src" "SITE/$dst"
+
+  # write index
+  echo "<li><a href='$dst'>$title</a>" >> "$idx"
+
+  # Copy supplementary files:
+  #  pref/suppl/* -> SITE/pref/*
+  for src in $pref/suppl/*; do
+    [ -f "$src" ] || continue
+    mkdir -p "SITE/${pref}"
+    dst="SITE/${pref}/${src##*/}"
+    [ "$dst" -nt "$src" ] || cp -f "$src" "$dst"
+  done
+
+done
+
+echo "</ul></body></html>" >> "$idx"
+
+
+rsync -av --delete SITE/ taltta:public_html/texts/

@@ -1,0 +1,150 @@
+\documentclass[a4paper]{article}
+
+\input{../texinc.tex}
+
+\title{NMR magnet optimization}
+\author{V.Zavjalov}
+
+\begin{document}
+
+\maketitle
+
+The field is calculated in radial coordinates,~$r$ and~$z$.
+We need to optimize at least three coil systems in the volume $V_0$: $r<r_0, |z|<z_0$:
+\begin{itemize}
+\item Homogeneous field produced by main solenoid and compensation coils
+\item Gradient field
+\item Minimum (quadratic) field
+\end{itemize}
+For this we calculate mean square difference from the best
+constant, linear, or quadratic approximation.
+
+$$ R = \sqrt{\frac{1}{V_0}\int_V(H(r,z) - H_0 - A f(z,r))^2\,dV}
+$$
+
+Function $f(z,r)$ can be chosen according with the fitting model:
+$f(z,r)=0$ for constant field, $f(z,r)=z$ for gradient field, 
+$f(z,r)=z^2-r^2/2$ for quadratic field or even $f(z,r) = z^4 - 3z^2r^2 + 3/8r^2$
+for forth-order field.
+
+The $-1/2$ ratio of~$r$ and~$z$ quadratic terms comes from Maxwell equations
+for a cylindrically symmetric system (see below).
+
+
+This can be rewritten as
+$$ R^2
+ = I_2 - 2H_0 I_1 + H_0^2 + A( A I_{f2} - 2I_{fH} + 2H_0 I_{f1})
+$$
+
+
+
+where we introduced integrals
+$$
+I_1 = \frac{1}{V_0}\int_V H(z,r)\, dV,\qquad
+I_2 = \frac{1}{V_0}\int_V H(z,r)^2\, dV,\qquad
+$$
+$$
+I_{fH} = \frac{1}{V_0}\int_V f(z,r) H(z,r)\, dV,\qquad
+I_{f1} = \frac{1}{V_0}\int_V f(z,r)  \, dV,\qquad
+I_{f2} = \frac{1}{V_0}\int_V f(z,r)^2\, dV,\qquad
+$$
+
+Parameters $H_0$ and $A$ correspond the minimum of~$R$:
+$$
+\frac{\partial R}{\partial H_0} = 0,\quad
+\frac{\partial R}{\partial A} = 0
+$$
+
+$$
+H_0 = I_1 - A I_{f1},\qquad
+$$
+$$
+A = (I_{fH} - I_{f1} I_1)/(I_{f2} - I_{f1}^2),\qquad
+$$
+
+For coil optimizations we use dimensionless current-independent
+parameters:
+$R/|H_0|$ for constant field, $R/(z_0|A|)$ for gradient field, and
+$R/(z_0^2|A|)$ for quadratic fields.
+
+Optimization is done in $z0=r0=10$ cylindrical volume.
+
+{\bf Main coil geometry.} We use main coil with length 104~mm, inner radius
+21~mm, and 6 layers of wire in the cylindrical shield with length 140~mm
+and radius 29~mm. Wire diameter is 0.084mm (in insulation).
+
+{\bf Compensation coils.} Minimum value in the optimization is not so
+important as the minimum width ($0.2$~mm error will break all the
+improvements). It's better to start compensation coils from edge of the
+main solenoid and make them thin (I use 2 layers) and long -- then the
+minimum is wider. Shorter coils have better field homogeneity, but it is
+harder to make accurate size. Second layer with different length does not
+help much. Compensation coils inside the solenoid is slightly better, but
+i decided to put them outside to adjust size after making and
+recalculating the main solenoid. Also it is easier to wind the main solenoid
+on a flat surface. The quadratic coil can improve the field
+homogeneity even more.
+
+{\bf Gradient coils} are better if they are wider. It is good to start
+them from the edge of the solenoid. Starting from the end of compensation
+coils is also fine (\%10 worse). Second layer with different length can
+improve gradient accuracy $\approx 2$ times,
+
+{\bf Quadratic coil} just a coil in the center with a certain width.
+
+{\bf Optimization results:}\\
+\medskip
+\begin{tabular}{lllllll}
+Coils & Edge &Length       & Layers & Err 20x20$^{(1)}$  & Err 10x10$^{(2)}$        & Field [G/A] vs r,z [cm] \\\hline
+Main  & 52   & 104         & 6      & $6.6\cdot10^{-4}$ & $1.7\cdot10^{-4}$ & $397.086$\\
+Comp  & 52   & 11.2        & 2      & $1.4\cdot10^{-5}$ & $2.2\cdot10^{-6}$ & $397.996$\\
+Grad  & 50   & 41.8        & 1      & $1.5\cdot10^{-2}$ & $3.5\cdot10^{-3}$ & $31.4270\ z$\\
+Quad  & -    & 34.8        & 2      & $4.9\cdot10^{-3}$ & $3.0\cdot10^{-4}$ & $105.958 - 15.240 (z^2-r^2/2)$\\
+4-th  & 13.4 & 6.4         & 2      & $1.8\cdot10^{-1}$ & $2.2\cdot10^{-1}$ & $16.6512 - 1.0351 f_4$$^{(3)}$\\
+\end{tabular}
+\medskip
+
+\noindent
+(1) in the volume with length = diameter = 20 mm.\\
+(2) in the volume with length = diameter = 10 mm.\\
+(3) $f_4 = z^4 - 3 z^2 r^2 + 3/8 r^4$
+
+
+\section*{Field distribution in a cylindrical simmetry (why $z^2+r^2/2$)}
+
+Maxwell equations:
+$$
+\mbox{div} B = 0,\qquad
+\mbox{rot} B = 0
+$$
+
+In symmetrical case ($\partial B/\partial\phi = 0, B_\phi=0$):
+$$
+\frac{\partial B_r}{\partial z} = \frac{\partial B_z}{\partial r}, \qquad
+\frac{1}{r} \frac{\partial r B_r}{\partial r} + \frac{\partial B_z}{\partial z}=0.
+$$
+
+Multiply the first equation by $r$, differentiate by $r$, and then multiply by $1/r$.
+Differentiane the second equation by $z$. Then one can exclude $B_r$:
+$$
+\frac{1}{r} \frac{\partial B_z}{\partial r}
+ + \frac{\partial^2 B_z}{\partial r^2}
+ + \frac{\partial^2 B_z}{\partial z^2}=0.
+$$
+
+For quadratic distribution $B_z = az^2 + br^2$ one have $a=-2b$.
+
+For 4-power distribution $B_z \propto z^4 - 3 z^2 r^2 + 3/8 r^4$.
+
+\section*{Critical current}
+
+For calculated solenoid (main + compensation coils), maximum absolute
+field on the coil is 0.110~T/A, on the shield is 0.843~T/A.
+According with Bruker wire specification critical field is $(13-5I)$~T.
+Critical field for Nb shield as about 0.15~T.
+
+Thus the current limit introduced by shield is 1.35~A,
+current limit by wire is 2.57~A. This corresponds to the
+field in the middle 0.09~T and 1.71~T (???).
+
+\end{document}

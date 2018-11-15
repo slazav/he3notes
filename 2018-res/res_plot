@@ -1,0 +1,62 @@
+#!/usr/bin/gnuplot
+
+f0=32768
+tau=2e-5
+df=10000
+
+w0=2*pi*f0
+
+vr(f) = ((2*pi*f0)**2 - (2*pi*f)**2)/\
+        (((2*pi*f0)**2 - (2*pi*f)**2)**2 + (2*pi*f/tau)**2)
+
+vi(f) = (2*pi*f/tau)/\
+        (((2*pi*f0)**2 - (2*pi*f)**2)**2 + (2*pi*f/tau)**2)
+
+va(f) = 1/sqrt(((2*pi*f0)**2 - (2*pi*f)**2)**2 + (2*pi*f/tau)**2)
+
+v0 = tau/(2*pi*f0)
+
+fr1 = sqrt((2*pi*f0)**2 + (2*pi*f0)/tau)/2/pi
+fr2 = sqrt((2*pi*f0)**2 - (2*pi*f0)/tau)/2/pi
+vr1 = -tau/(4*pi*f0 + 1./tau)
+vr2 = +tau/(4*pi*f0 - 1./tau)
+
+fi  = sqrt( (2*(2*pi*f0)**2-1/tau**2)/6\
+    - sqrt((2*(2*pi*f0)**2-1/tau**2)**2/36 + (2*pi*f0)**4/3) )/2/pi
+
+fia = sqrt((2*pi*f0)**2 - 1./4/tau**2)/2/pi
+via = tau/(2*pi*f0)*(1 + 1/16/(2*pi*f0)**2/tau**2)
+
+fa = sqrt((2*pi*f0)**2 - 1./2/tau**2)/2/pi
+va = tau/(2*pi*f0) * (1-1./(2*tau*2*pi*f0)**2)**(-1.0/2)
+
+va2 = va/sqrt(2.)
+fa2a = sqrt( (2*pi*f0)**2 - 1./2/tau**2 + sqrt((2*pi*f0/tau)**2 - 1./4/tau**4) )/2/pi
+fa2b = sqrt( (2*pi*f0)**2 - 1./2/tau**2 - sqrt((2*pi*f0/tau)**2 - 1./4/tau**4) )/2/pi
+
+dfa = 1/tau * (1 - 1./8/(2*pi*f0*tau)**2)/2/pi
+
+vi2 = va/2.
+fi2a = fia - 1./2/tau/2/pi
+fi2b = fia + 1./2/tau/2/pi
+
+set arrow 1 from f0,v0 to f0,0    nohead lc 0
+set arrow 2 from fr1,0 to fr1,vr1 nohead lc 2
+set arrow 3 from fr2,0 to fr2,vr2 nohead lc 2
+set arrow 4 from fia,0 to fia,via nohead lc 1
+set arrow 5 from fa,0  to fa,va   nohead lc 3
+#set arrow 6 from fa2a,va2 to fa2b,va2 nohead lc 3
+set arrow 6 from fa2a,va2 to fa2a-dfa,va2 nohead lc 3
+set arrow 7 from fi2a,vi2 to fi2b,vi2 nohead lc 1
+
+set terminal eps size 4,3
+set output "res.eps"
+
+plot [f0-df:f0+df]\
+  vi(x) with lines title "ads",\
+  vr(x) with lines title "disp",\
+  va(x) with lines title "abs",\
+0 lc 0 notitle
+
+#pause -1
+#replot

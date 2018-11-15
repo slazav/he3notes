@@ -1,0 +1,67 @@
+% standard packages
+\usepackage{amssymb}
+\usepackage{euscript}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{fullpage}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{titling}
+
+% title style
+\pretitle{\noindent\LARGE}
+\posttitle{\\[1ex]}
+\preauthor{\large}
+\postauthor{,}
+\predate{\large(}
+\postdate{)}
+\date{last update: \today}
+
+% large page size
+\oddsidemargin -1cm
+\topmargin -1cm
+\textwidth 18cm
+\textheight 27cm
+\pagestyle{empty}
+
+
+% PDF figure
+\newcommand{\image}[3]{
+\begin{figure}[#1]
+\begin{center}
+\caption{\small#3}
+\includegraphics{img_#2.pdf}
+\label{image:#2}
+\end{center}
+\end{figure}
+}
+
+
+% companies
+\def\SchaefferAG{\href{https://www.schaeffer-ag.de/en/}{Schaeffer-AG}}
+\def\MultiCB{\href{https://portal.multi-circuit-boards.eu}{Multi-CB}}
+\def\BlueFors{\href{https://www.bluefors.com/}{BlueFors}}
+
+\def\Ohmite{\href{https://www.ohmite.com}{Ohmite}}
+\def\Firmetal{\href{http://www.firmetal.com}{Firmetal}}
+\def\Bruker{\href{https://www.bruker.com}{Brucker}}
+
+% use this to refer to Farnell and RS numbers:
+\def\FarnellN#1{\href{https://fi.farnell.com/#1}{Farnell:#1}}
+\def\RSN#1{\href{https://fi.rsdelivers.com/productlist/search?query=#1}{RS:#1}}
+
+% products:
+\def\OhmiteOFOD{\href{https://www.ohmite.com/assets/docs/res_od_of_oa.pdf}{Ohmite OF/OD series}}
+
+% Supplementary materials on github <report> <file>
+\def\GitFile#1#2{\href{https://github.com/slazav/he3notes/raw/master/#1/#2}{#1/#2}}
+
+% Supplementary materials on my users.aalt.fi page
+\def\WWWFile#1{\href{https://users.aalto.fi/~zavyalv1/#1}{#1}}
+
+
+%progams
+\def\MagnettiProg{\href{https://github.com/slazav/magneetti}{\tt magnetti}}
+
